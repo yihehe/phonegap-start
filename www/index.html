@@ -32,11 +32,36 @@
                 <p class="status pending blink">Connecting to Device</p>
                 <p class="status complete blink hide">Device is Ready</p>
             </div>
+			<div>
+				<input type="text" id="name" placeholder="Name" />
+				<input type="submit" id="add" value="Add" />
+				<input type="submit" id="raffle" value="Raffle" />
+			</div>
+			<div id="list">
+			</div>
         </div>
-        <script type="text/javascript" src="phonegap.js"></script>
+        <!--script type="text/javascript" src="phonegap.js"></script-->
         <script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript">
-            app.initialize();
+			var names = [];
+			var input = $('#name');
+			var list = $('#list');
+			$('#add').click(function() {
+				if (input.val() != "") {
+					names.push(input.val());
+					input.val('');
+				}
+				console.log(names);
+			});
+			$('#raffle').click(function() {
+				if (names.length > 0) {
+					alert(names[Math.floor(Math.random()*names.length)]);
+				} else {
+					alert("Enter some shit");
+				}
+			});
+            //app.initialize();
         </script>
     </body>
 </html>
